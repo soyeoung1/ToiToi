@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff69b4"/>
+      <stop offset="1" stop-color="#ffd1e8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#g)"/>
+  <g transform="translate(256,260)">
+    <circle cx="256" cy="160" r="120" fill="#fff" opacity="0.9"/>
+    <rect x="136" y="280" width="240" height="280" rx="40" fill="#fff" opacity="0.9"/>
+    <circle cx="216" cy="150" r="18" fill="#333"/>
+    <circle cx="296" cy="150" r="18" fill="#333"/>
+    <path d="M216 220 Q256 240 296 220" stroke="#333" stroke-width="8" fill="none"/>
+  </g>
+  <text x="50%" y="920" font-size="72" font-family="Segoe UI, Roboto, Arial" fill="#ffffff" text-anchor="middle" opacity="0.9">AI Generated • Doll Style</text>
+</svg>

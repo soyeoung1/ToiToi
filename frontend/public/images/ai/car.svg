@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00c853"/>
+      <stop offset="1" stop-color="#a8e6cf"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#g)"/>
+  <g transform="translate(160,420)" fill="#fff" opacity="0.95">
+    <rect x="0" y="0" width="704" height="160" rx="40"/>
+    <rect x="120" y="-60" width="320" height="120" rx="30"/>
+    <circle cx="160" cy="170" r="70"/>
+    <circle cx="560" cy="170" r="70"/>
+  </g>
+  <text x="50%" y="920" font-size="72" font-family="Segoe UI, Roboto, Arial" fill="#ffffff" text-anchor="middle" opacity="0.9">AI Generated • Car Style</text>
+</svg>
