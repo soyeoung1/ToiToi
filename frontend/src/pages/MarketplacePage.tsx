@@ -169,7 +169,7 @@ export default function MarketplacePage() {
             <div className="mb-4 flex justify-between items-center">
               <p className="text-gray-600">{filteredItems.length}개의 상품</p>
               <select
-                className="px-4 py-2 border border-gray-300 rounded-lg"
+                className="px-4 py-2 border border-gray-200 rounded-lg bg-white"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
               >
@@ -189,13 +189,13 @@ export default function MarketplacePage() {
                   <Link
                     key={item.id}
                     to={`/marketplace/${item.id}`}
-                    className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+                    className="group bg-white rounded-2xl shadow-sm ring-1 ring-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
                   >
-                    <div className="aspect-square bg-gray-100">
+                    <div className="aspect-square bg-gray-50">
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform"
                       />
                     </div>
                     <div className="p-4">

@@ -6,25 +6,28 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-500 to-secondary-500 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">🧸 ToiToi</h1>
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-400 via-secondary-400 to-secondary-600 opacity-90" />
+        <div className="relative container mx-auto px-4 text-center py-20 md:py-28 text-white">
+          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
+            🧸 ToiToi
+          </h1>
           <p className="text-2xl md:text-3xl mb-4">
             이 장난감으로 다시 한번, 새로운 기쁨을!
           </p>
-          <p className="text-lg md:text-xl mb-8 text-white/90">
+          <p className="text-lg md:text-xl mb-10 text-white/90">
             중고 장난감 거래부터 전문 수리 서비스까지
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/marketplace"
-              className="px-8 py-4 bg-white text-primary-600 rounded-lg font-semibold hover:bg-gray-100 transition-all"
+              className="px-8 py-4 bg-white text-primary-600 rounded-full font-semibold hover:bg-gray-100 shadow-sm transition"
             >
               중고거래 시작하기
             </Link>
             <Link
               to="/repair"
-              className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-all"
+              className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-full font-semibold hover:bg-white hover:text-primary-600 transition"
             >
               수리 의뢰하기
             </Link>
@@ -40,7 +43,7 @@ export default function HomePage() {
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {/* Feature 1 */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+            <div className="bg-white p-8 rounded-2xl shadow-sm ring-1 ring-gray-100 hover:shadow-lg transition-shadow">
               <div className="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                 <Package className="text-primary-600" size={32} />
               </div>
@@ -58,7 +61,7 @@ export default function HomePage() {
             </div>
 
             {/* Feature 2 */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+            <div className="bg-white p-8 rounded-2xl shadow-sm ring-1 ring-gray-100 hover:shadow-lg transition-shadow">
               <div className="bg-secondary-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                 <Wrench className="text-secondary-600" size={32} />
               </div>
@@ -75,7 +78,7 @@ export default function HomePage() {
             </div>
 
             {/* Feature 3 */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+            <div className="bg-white p-8 rounded-2xl shadow-sm ring-1 ring-gray-100 hover:shadow-lg transition-shadow">
               <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                 <TrendingUp className="text-green-600" size={32} />
               </div>
