@@ -52,6 +52,22 @@ export const users = {
   },
 };
 
+// 안전한 이미지 자동 매핑: 상품명/카테고리 기반 Unsplash Source 사용
+const imageFromTitle = (id: number, name: string, category: string) => {
+  const categoryMap: Record<string, string> = {
+    lego: "lego set toy",
+    doll: "doll toy",
+    gundam: "gundam model kit",
+    figure: "anime figure toy",
+    car: "toy bus car",
+  };
+  const query = `${name} ${categoryMap[category] ?? category}`.trim();
+  // size fixed for layout consistency; sig=id gives stable selection per item
+  return `https://source.unsplash.com/400x400/?${encodeURIComponent(
+    query
+  )}&sig=${id}`;
+};
+
 // 상품 데이터
 export const items = [
   {
@@ -60,8 +76,7 @@ export const items = [
     price: 45000,
     condition: "양호",
     category: "lego",
-    image:
-      "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=800&h=800&fit=crop",
+    image: imageFromTitle(1, "레고 크리에이터 세트", "lego"),
     sellerId: "user1",
     location: "서울 강남구",
     postedAt: "3일 전",
@@ -77,8 +92,7 @@ export const items = [
     price: 25000,
     condition: "최상",
     category: "doll",
-    image:
-      "https://images.unsplash.com/photo-1580130732478-d00d5a6c2c93?w=800&h=800&fit=crop",
+    image: imageFromTitle(2, "바비 인형 세트", "doll"),
     sellerId: "user2",
     location: "서울 송파구",
     postedAt: "1일 전",
@@ -94,8 +108,7 @@ export const items = [
     price: 35000,
     condition: "양호",
     category: "gundam",
-    image:
-      "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=800&h=800&fit=crop",
+    image: imageFromTitle(3, "건담 프라모델 RX-78", "gundam"),
     sellerId: "user3",
     location: "서울 마포구",
     postedAt: "5일 전",
@@ -111,8 +124,7 @@ export const items = [
     price: 18000,
     condition: "보통",
     category: "car",
-    image:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=800&fit=crop",
+    image: imageFromTitle(4, "타요 버스 장난감", "car"),
     sellerId: "user1",
     location: "서울 강남구",
     postedAt: "2일 전",
@@ -127,8 +139,7 @@ export const items = [
     price: 30000,
     condition: "최상",
     category: "figure",
-    image:
-      "https://images.unsplash.com/photo-1601524909162-ae8725290836?w=800&h=800&fit=crop",
+    image: imageFromTitle(5, "포켓몬 피규어 세트", "figure"),
     sellerId: "user2",
     location: "서울 송파구",
     postedAt: "4일 전",
@@ -144,8 +155,7 @@ export const items = [
     price: 55000,
     condition: "양호",
     category: "doll",
-    image:
-      "https://images.unsplash.com/photo-1563396983906-b3795482a59a?w=800&h=800&fit=crop",
+    image: imageFromTitle(6, "실바니안 패밀리", "doll"),
     sellerId: "user5",
     location: "서울 노원구",
     postedAt: "1주일 전",
@@ -161,8 +171,7 @@ export const items = [
     price: 65000,
     condition: "최상",
     category: "lego",
-    image:
-      "https://images.unsplash.com/photo-1611604548018-d56bbd85d681?w=800&h=800&fit=crop",
+    image: imageFromTitle(7, "레고 테크닉 자동차", "lego"),
     sellerId: "user4",
     location: "서울 서초구",
     postedAt: "1주일 전",
@@ -177,8 +186,7 @@ export const items = [
     price: 120000,
     condition: "양호",
     category: "lego",
-    image:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=800&fit=crop",
+    image: imageFromTitle(8, "레고 해리포터 호그와트", "lego"),
     sellerId: "user4",
     location: "서울 서초구",
     postedAt: "2일 전",
@@ -194,8 +202,7 @@ export const items = [
     price: 32000,
     condition: "최상",
     category: "doll",
-    image:
-      "https://images.unsplash.com/photo-1563396983906-b3795482a59a?w=800&h=800&fit=crop",
+    image: imageFromTitle(9, "토이스토리 우디 인형", "doll"),
     sellerId: "user5",
     location: "서울 노원구",
     postedAt: "3일 전",
@@ -211,8 +218,7 @@ export const items = [
     price: 28000,
     condition: "양호",
     category: "gundam",
-    image:
-      "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=800&h=800&fit=crop",
+    image: imageFromTitle(10, "건담 자쿠 프라모델", "gundam"),
     sellerId: "user3",
     location: "서울 마포구",
     postedAt: "6일 전",
