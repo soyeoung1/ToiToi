@@ -31,8 +31,9 @@
     />
     <title>ToiToi - 이 장난감으로 다시 한번, 새로운 기쁨을!</title>
 
-    <!-- Service Worker 무효화 스크립트 -->
+    <!-- 최강 캐시 무효화 스크립트 -->
     <script>
+      // Service Worker 완전 제거
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker
           .getRegistrations()
@@ -41,10 +42,32 @@
               registration.unregister();
             }
           });
+        // 캐시 스토리지도 완전 삭제
+        if ("caches" in window) {
+          caches.keys().then(function (names) {
+            for (let name of names) caches.delete(name);
+          });
+        }
       }
-      // 페이지 로드 시 강제 새로고침 확인
-      if (performance.navigation.type !== 1) {
-        sessionStorage.setItem("forceReload", "true");
+
+      // 브라우저 캐시 강제 무효화
+      window.addEventListener("pageshow", function (event) {
+        if (
+          event.persisted ||
+          (window.performance && window.performance.navigation.type === 2)
+        ) {
+          window.location.reload(true);
+        }
+      });
+
+      // 로컬 스토리지 버전 체크로 강제 리로드
+      const CURRENT_VERSION = "v1.0.5";
+      const storedVersion = localStorage.getItem("app_version");
+      if (storedVersion !== CURRENT_VERSION) {
+        localStorage.setItem("app_version", CURRENT_VERSION);
+        if (storedVersion) {
+          window.location.reload(true);
+        }
       }
     </script>
   </head>
