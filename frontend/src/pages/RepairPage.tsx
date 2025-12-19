@@ -121,7 +121,10 @@ export default function RepairPage() {
                     </div>
                   </div>
 
-                  <Link to="/repair/request" className="w-full inline-flex justify-center py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
+                  <Link
+                    to="/repair/request"
+                    className="w-full inline-flex justify-center py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
+                  >
                     수리 요청하기
                   </Link>
                 </div>
@@ -138,7 +141,10 @@ export default function RepairPage() {
           <p className="mb-6">
             수리 요청서를 작성하시면 적합한 전문가를 추천해드립니다
           </p>
-          <Link to="/repair/request" className="inline-block px-8 py-3 bg-white text-primary-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+          <Link
+            to="/repair/request"
+            className="inline-block px-8 py-3 bg-white text-primary-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+          >
             수리 요청서 작성하기
           </Link>
         </div>
