@@ -381,15 +381,3 @@ git add -A
 git commit -m "deploy: update site"
 git push
 ```
-
----
-
-## 📝 라이선스
-
-MIT License
-
----
-
-## 👥 기여자
-
-- 개발: ToiToi Team

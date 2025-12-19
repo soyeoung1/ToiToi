@@ -52,19 +52,18 @@ export const users = {
   },
 };
 
-// 실제 상품 사진 매핑: Picsum 이미지 서비스 사용
-const imageFromTitle = (id: number, category: string) => {
-  // 카테고리별로 다른 이미지 ID 범위 할당 (실제 장난감 느낌)
-  const baseIds: Record<string, number> = {
-    lego: 200, // 건축/블록 느낌
-    doll: 600, // 인형/사람
-    gundam: 400, // 메카닉/기계
-    figure: 500, // 캐릭터
-    car: 300, // 차량/운송
-  };
-  const baseId = baseIds[category] || 100;
-  const imageId = baseId + id * 7; // 아이템별 고유 이미지
-  return `https://picsum.photos/seed/${imageId}/400/400`;
+// 상품 이미지 - 실제 장난감 이미지 URL
+const productImages: Record<number, string> = {
+  1: "https://m.media-amazon.com/images/I/81dZ-3YF6QL._AC_SL1500_.jpg", // 레고 크리에이터 세트
+  2: "https://m.media-amazon.com/images/I/81nR2qCMbAL._AC_SL1500_.jpg", // 바비 인형 세트
+  3: "https://m.media-amazon.com/images/I/71Sy+h0IITL._AC_SL1181_.jpg", // 건담 프라모델 RX-78
+  4: "https://m.media-amazon.com/images/I/71YfG3dIKpL._AC_SL1500_.jpg", // 타요 버스 장난감
+  5: "https://m.media-amazon.com/images/I/81QKx1CLg0L._AC_SL1500_.jpg", // 포켓몬 피규어 세트
+  6: "https://m.media-amazon.com/images/I/81dJC4vz5nL._AC_SL1500_.jpg", // 실바니안 패밀리
+  7: "https://m.media-amazon.com/images/I/81V+HZlPRAL._AC_SL1500_.jpg", // 레고 테크닉 자동차
+  8: "https://m.media-amazon.com/images/I/91MpJbnUfKL._AC_SL1500_.jpg", // 레고 해리포터 호그와트
+  9: "https://m.media-amazon.com/images/I/71GCqX9RIRL._AC_SL1500_.jpg", // 토이스토리 우디 인형
+  10: "https://m.media-amazon.com/images/I/71aErYk5CRL._AC_SL1024_.jpg", // 건담 자쿠 프라모델
 };
 
 // 상품 데이터
@@ -75,7 +74,7 @@ export const items = [
     price: 45000,
     condition: "양호",
     category: "lego",
-    image: imageFromTitle(1, "lego"),
+    image: productImages[1],
     sellerId: "user1",
     location: "서울 강남구",
     postedAt: "3일 전",
@@ -91,7 +90,7 @@ export const items = [
     price: 25000,
     condition: "최상",
     category: "doll",
-    image: imageFromTitle(2, "doll"),
+    image: productImages[2],
     sellerId: "user2",
     location: "서울 송파구",
     postedAt: "1일 전",
@@ -107,7 +106,7 @@ export const items = [
     price: 35000,
     condition: "양호",
     category: "gundam",
-    image: imageFromTitle(3, "gundam"),
+    image: productImages[3],
     sellerId: "user3",
     location: "서울 마포구",
     postedAt: "5일 전",
@@ -123,7 +122,7 @@ export const items = [
     price: 18000,
     condition: "보통",
     category: "car",
-    image: imageFromTitle(4, "car"),
+    image: productImages[4],
     sellerId: "user1",
     location: "서울 강남구",
     postedAt: "2일 전",
@@ -138,7 +137,7 @@ export const items = [
     price: 30000,
     condition: "최상",
     category: "figure",
-    image: imageFromTitle(5, "figure"),
+    image: productImages[5],
     sellerId: "user2",
     location: "서울 송파구",
     postedAt: "4일 전",
@@ -154,7 +153,7 @@ export const items = [
     price: 55000,
     condition: "양호",
     category: "doll",
-    image: imageFromTitle(6, "doll"),
+    image: productImages[6],
     sellerId: "user5",
     location: "서울 노원구",
     postedAt: "1주일 전",
@@ -170,7 +169,7 @@ export const items = [
     price: 65000,
     condition: "최상",
     category: "lego",
-    image: imageFromTitle(7, "lego"),
+    image: productImages[7],
     sellerId: "user4",
     location: "서울 서초구",
     postedAt: "1주일 전",
@@ -185,7 +184,7 @@ export const items = [
     price: 120000,
     condition: "양호",
     category: "lego",
-    image: imageFromTitle(8, "lego"),
+    image: productImages[8],
     sellerId: "user4",
     location: "서울 서초구",
     postedAt: "2일 전",
@@ -201,7 +200,7 @@ export const items = [
     price: 32000,
     condition: "최상",
     category: "doll",
-    image: imageFromTitle(9, "doll"),
+    image: productImages[9],
     sellerId: "user5",
     location: "서울 노원구",
     postedAt: "3일 전",
@@ -217,7 +216,7 @@ export const items = [
     price: 28000,
     condition: "양호",
     category: "gundam",
-    image: imageFromTitle(10, "gundam"),
+    image: productImages[10],
     sellerId: "user3",
     location: "서울 마포구",
     postedAt: "6일 전",
