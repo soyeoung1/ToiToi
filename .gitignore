@@ -15,7 +15,7 @@ ENV/
 ai-module/venv/
 
 # Build outputs
-frontend/dist/
+# frontend/dist/  # GitHub Pages에서 사용하기 위해 커밋
 frontend/build/
 backend/dist/
 backend/build/

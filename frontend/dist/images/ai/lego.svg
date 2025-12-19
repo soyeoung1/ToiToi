@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff7b00"/>
+      <stop offset="1" stop-color="#ffcf33"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#g)"/>
+  <g fill="#ffffff" opacity="0.15">
+    <circle cx="200" cy="220" r="80"/>
+    <circle cx="350" cy="220" r="80"/>
+    <circle cx="500" cy="220" r="80"/>
+    <circle cx="650" cy="220" r="80"/>
+  </g>
+  <g transform="translate(160,420)">
+    <rect x="0" y="0" width="704" height="320" rx="40" fill="#e53935"/>
+    <g fill="#fff">
+      <circle cx="88" cy="-30" r="48"/>
+      <circle cx="240" cy="-30" r="48"/>
+      <circle cx="392" cy="-30" r="48"/>
+      <circle cx="544" cy="-30" r="48"/>
+    </g>
+  </g>
+  <text x="50%" y="920" font-size="72" font-family="Segoe UI, Roboto, Arial" fill="#ffffff" text-anchor="middle" opacity="0.9">AI Generated • LEGO Style</text>
+</svg>
