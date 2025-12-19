@@ -4,80 +4,80 @@ export default function PricePredictionPage() {
   const priceData = [
     {
       id: 1,
-      name: "레고 스타워즈 밀레니엄 팔콘",
+      name: "?�고 ?��??�즈 밀?�니???�콘",
       minPrice: 180000,
       category: "블록",
-      condition: "양호",
-      image: "🧱",
+      condition: "?�호",
+      image: "?��",
       trend: [
-        { label: "1주 전", value: 180 },
-        { label: "6일", value: 182 },
-        { label: "5일", value: 184 },
-        { label: "4일", value: 188 },
-        { label: "3일", value: 192 },
-        { label: "2일", value: 195 },
-        { label: "오늘", value: 198 },
+        { label: "1�???, value: 180 },
+        { label: "6??, value: 182 },
+        { label: "5??, value: 184 },
+        { label: "4??, value: 188 },
+        { label: "3??, value: 192 },
+        { label: "2??, value: 195 },
+        { label: "?�늘", value: 198 },
       ],
     },
     {
       id: 2,
-      name: "건담 RX-93 뉴건담",
+      name: "건담 RX-93 ?�건??,
       minPrice: 42000,
-      category: "피규어",
+      category: "?�규??,
       condition: "최상",
-      image: "🤖",
+      image: "?��",
       trend: [
-        { label: "1주 전", value: 40 },
-        { label: "6일", value: 41 },
-        { label: "5일", value: 41 },
-        { label: "4일", value: 42 },
-        { label: "3일", value: 43 },
-        { label: "2일", value: 44 },
-        { label: "오늘", value: 45 },
+        { label: "1�???, value: 40 },
+        { label: "6??, value: 41 },
+        { label: "5??, value: 41 },
+        { label: "4??, value: 42 },
+        { label: "3??, value: 43 },
+        { label: "2??, value: 44 },
+        { label: "?�늘", value: 45 },
       ],
     },
     {
       id: 3,
-      name: "바비 드림하우스",
+      name: "바비 ?�림?�우??,
       minPrice: 95000,
-      category: "인형",
+      category: "?�형",
       condition: "최상",
-      image: "🏠",
+      image: "?��",
       trend: [
-        { label: "1주 전", value: 90 },
-        { label: "6일", value: 91 },
-        { label: "5일", value: 92 },
-        { label: "4일", value: 94 },
-        { label: "3일", value: 95 },
-        { label: "2일", value: 97 },
-        { label: "오늘", value: 99 },
+        { label: "1�???, value: 90 },
+        { label: "6??, value: 91 },
+        { label: "5??, value: 92 },
+        { label: "4??, value: 94 },
+        { label: "3??, value: 95 },
+        { label: "2??, value: 97 },
+        { label: "?�늘", value: 99 },
       ],
     },
     {
       id: 4,
-      name: "타요 버스 세트",
+      name: "?�??버스 ?�트",
       minPrice: 35000,
       category: "차량",
       condition: "보통",
-      image: "🚌",
+      image: "?��",
       trend: [
-        { label: "1주 전", value: 32 },
-        { label: "6일", value: 33 },
-        { label: "5일", value: 34 },
-        { label: "4일", value: 34 },
-        { label: "3일", value: 35 },
-        { label: "2일", value: 36 },
-        { label: "오늘", value: 37 },
+        { label: "1�???, value: 32 },
+        { label: "6??, value: 33 },
+        { label: "5??, value: 34 },
+        { label: "4??, value: 34 },
+        { label: "3??, value: 35 },
+        { label: "2??, value: 36 },
+        { label: "?�늘", value: 37 },
       ],
     },
   ];
 
-  const categories = ["인형", "피규어", "블록", "차량", "기타"];
+  const categories = ["?�형", "?�규??, "블록", "차량", "기�?"];
 
   const recentDeals = [
-    { title: "레고 팔콘 미개봉", price: 185000, diff: "+3.1%" },
-    { title: "건담 뉴건담 중고", price: 41000, diff: "+1.5%" },
-    { title: "바비 하우스 A급", price: 94000, diff: "-0.8%" },
+    { title: "?�고 ?�콘 미개�?, price: 185000, diff: "+3.1%" },
+    { title: "건담 ?�건??중고", price: 41000, diff: "+1.5%" },
+    { title: "바비 ?�우??A�?, price: 94000, diff: "-0.8%" },
   ];
 
   return (
@@ -85,7 +85,7 @@ export default function PricePredictionPage() {
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center gap-3 mb-6">
           <BadgeDollarSign className="text-primary-600" size={28} />
-          <h1 className="text-3xl font-bold">AI 가격 예측</h1>
+          <h1 className="text-3xl font-bold">AI 가�??�측</h1>
         </div>
 
         <div className="flex flex-wrap items-center gap-3 mb-8">
@@ -126,27 +126,27 @@ export default function PricePredictionPage() {
                         {item.category}
                       </span>
                       <span className="px-2 py-1 rounded-full bg-gray-100">
-                        상태 {item.condition}
+                        ?�태 {item.condition}
                       </span>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <span className="font-semibold text-primary-600">
-                        ₩{item.minPrice.toLocaleString()}
+                        ??item.minPrice.toLocaleString()}
                       </span>
-                      <span className="text-gray-400">예상가</span>
+                      <span className="text-gray-400">?�상가</span>
                     </div>
                     <div className="grid gap-2">
-                      <label className="text-xs text-gray-500">세부 옵션</label>
+                      <label className="text-xs text-gray-500">?��? ?�션</label>
                       <select
                         className="w-full h-10 px-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white"
                         defaultValue=""
                       >
                         <option value="" disabled>
-                          색상을 선택하세요
+                          ?�상???�택?�세??
                         </option>
-                        <option value="red">레드</option>
+                        <option value="red">?�드</option>
                         <option value="blue">블루</option>
-                        <option value="yellow">옐로우</option>
+                        <option value="yellow">?�로??/option>
                         <option value="green">그린</option>
                         <option value="black">블랙</option>
                       </select>
@@ -157,9 +157,9 @@ export default function PricePredictionPage() {
                 <div className="border-t border-gray-100 px-4 pb-4 pt-3">
                   <div className="mb-2 flex items-center justify-between">
                     <span className="text-sm font-semibold text-gray-800">
-                      가격 추이
+                      가�?추이
                     </span>
-                    <span className="text-xs text-gray-500">최근 7일</span>
+                    <span className="text-xs text-gray-500">최근 7??/span>
                   </div>
                   <div className="h-44 flex items-end gap-3">
                     {item.trend.map((point) => {
@@ -172,7 +172,7 @@ export default function PricePredictionPage() {
                           <div
                             className="w-10 rounded-lg bg-gradient-to-t from-primary-200 to-primary-500"
                             style={{ height: `${height}%` }}
-                            title={`${point.label} · ${point.value}만 원`}
+                            title={`${point.label} · ${point.value}�???}
                           />
                           <span>{point.label}</span>
                         </div>
@@ -187,7 +187,7 @@ export default function PricePredictionPage() {
 
         <div className="grid gap-6 lg:grid-cols-2 mt-8">
           <div className="bg-white rounded-2xl shadow-sm ring-1 ring-gray-100 p-6">
-            <h3 className="font-semibold mb-3">최근 거래 요약</h3>
+            <h3 className="font-semibold mb-3">최근 거래 ?�약</h3>
             <div className="space-y-3">
               {recentDeals.map((deal) => (
                 <div
@@ -197,7 +197,7 @@ export default function PricePredictionPage() {
                   <span className="truncate mr-2">{deal.title}</span>
                   <div className="flex items-center gap-3">
                     <span className="font-semibold text-primary-600">
-                      ₩{deal.price.toLocaleString()}
+                      ??deal.price.toLocaleString()}
                     </span>
                     <span className="text-xs text-gray-500">{deal.diff}</span>
                   </div>
@@ -207,9 +207,9 @@ export default function PricePredictionPage() {
           </div>
 
           <div className="bg-white rounded-2xl shadow-sm ring-1 ring-gray-100 p-6">
-            <h3 className="font-semibold mb-3">예측 분포</h3>
+            <h3 className="font-semibold mb-3">?�측 분포</h3>
             <div className="h-48 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500">
-              예측 분포(곧 추가)
+              ?�측 분포(�?추�?)
             </div>
           </div>
         </div>
