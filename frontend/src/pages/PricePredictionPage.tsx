@@ -9,6 +9,15 @@ export default function PricePredictionPage() {
       category: "블록",
       condition: "양호",
       image: "🧱",
+      trend: [
+        { label: "1주 전", value: 180 },
+        { label: "6일", value: 182 },
+        { label: "5일", value: 184 },
+        { label: "4일", value: 188 },
+        { label: "3일", value: 192 },
+        { label: "2일", value: 195 },
+        { label: "오늘", value: 198 },
+      ],
     },
     {
       id: 2,
@@ -17,6 +26,15 @@ export default function PricePredictionPage() {
       category: "피규어",
       condition: "최상",
       image: "🤖",
+      trend: [
+        { label: "1주 전", value: 40 },
+        { label: "6일", value: 41 },
+        { label: "5일", value: 41 },
+        { label: "4일", value: 42 },
+        { label: "3일", value: 43 },
+        { label: "2일", value: 44 },
+        { label: "오늘", value: 45 },
+      ],
     },
     {
       id: 3,
@@ -25,6 +43,15 @@ export default function PricePredictionPage() {
       category: "인형",
       condition: "최상",
       image: "🏠",
+      trend: [
+        { label: "1주 전", value: 90 },
+        { label: "6일", value: 91 },
+        { label: "5일", value: 92 },
+        { label: "4일", value: 94 },
+        { label: "3일", value: 95 },
+        { label: "2일", value: 97 },
+        { label: "오늘", value: 99 },
+      ],
     },
     {
       id: 4,
@@ -33,20 +60,19 @@ export default function PricePredictionPage() {
       category: "차량",
       condition: "보통",
       image: "🚌",
+      trend: [
+        { label: "1주 전", value: 32 },
+        { label: "6일", value: 33 },
+        { label: "5일", value: 34 },
+        { label: "4일", value: 34 },
+        { label: "3일", value: 35 },
+        { label: "2일", value: 36 },
+        { label: "오늘", value: 37 },
+      ],
     },
   ];
 
   const categories = ["인형", "피규어", "블록", "차량", "기타"];
-
-  const chartData = [
-    { label: "1주 전", value: 32 },
-    { label: "6일", value: 35 },
-    { label: "5일", value: 34 },
-    { label: "4일", value: 38 },
-    { label: "3일", value: 40 },
-    { label: "2일", value: 42 },
-    { label: "오늘", value: 45 },
-  ];
 
   const recentDeals = [
     { title: "레고 팔콘 미개봉", price: 185000, diff: "+3.1%" },
@@ -76,13 +102,16 @@ export default function PricePredictionPage() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-[360px,1fr] gap-6">
-          {/* Left column: cards + inputs */}
-          <div className="space-y-5">
-            {priceData.map((item) => (
+        <div className="grid gap-6 lg:grid-cols-2">
+          {priceData.map((item) => {
+            const maxValue = Math.max(
+              ...item.trend.map((point) => point.value)
+            );
+
+            return (
               <div
                 key={item.id}
-                className="bg-white rounded-2xl shadow-sm ring-1 ring-gray-100 overflow-hidden"
+                className="bg-white rounded-2xl shadow-sm ring-1 ring-gray-100 overflow-hidden flex flex-col"
               >
                 <div className="grid grid-cols-[140px,1fr] gap-4 p-4 items-center">
                   <div className="aspect-[4/5] rounded-xl bg-gray-100 flex items-center justify-center text-4xl">
@@ -124,63 +153,63 @@ export default function PricePredictionPage() {
                     </div>
                   </div>
                 </div>
+
+                <div className="border-t border-gray-100 px-4 pb-4 pt-3">
+                  <div className="mb-2 flex items-center justify-between">
+                    <span className="text-sm font-semibold text-gray-800">
+                      가격 추이
+                    </span>
+                    <span className="text-xs text-gray-500">최근 7일</span>
+                  </div>
+                  <div className="h-44 flex items-end gap-3">
+                    {item.trend.map((point) => {
+                      const height = (point.value / maxValue) * 100;
+                      return (
+                        <div
+                          key={point.label}
+                          className="flex flex-col items-center gap-2 text-xs text-gray-500"
+                        >
+                          <div
+                            className="w-10 rounded-lg bg-gradient-to-t from-primary-200 to-primary-500"
+                            style={{ height: `${height}%` }}
+                            title={`${point.label} · ${point.value}만 원`}
+                          />
+                          <span>{point.label}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
-            ))}
+            );
+          })}
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-2 mt-8">
+          <div className="bg-white rounded-2xl shadow-sm ring-1 ring-gray-100 p-6">
+            <h3 className="font-semibold mb-3">최근 거래 요약</h3>
+            <div className="space-y-3">
+              {recentDeals.map((deal) => (
+                <div
+                  key={deal.title}
+                  className="flex items-center justify-between text-sm text-gray-700"
+                >
+                  <span className="truncate mr-2">{deal.title}</span>
+                  <div className="flex items-center gap-3">
+                    <span className="font-semibold text-primary-600">
+                      ₩{deal.price.toLocaleString()}
+                    </span>
+                    <span className="text-xs text-gray-500">{deal.diff}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Right column: chart-style blocks */}
-          <div className="space-y-5">
-            <div className="bg-white rounded-2xl shadow-sm ring-1 ring-gray-100 p-6">
-              <div className="mb-4 flex items-center justify-between">
-                <h3 className="font-semibold">시세 그래프</h3>
-                <span className="text-xs text-gray-500">최근 7일</span>
-              </div>
-              <div className="h-64 flex items-end gap-3">
-                {chartData.map((c) => {
-                  const max = Math.max(...chartData.map((d) => d.value));
-                  const height = (c.value / max) * 100;
-                  return (
-                    <div
-                      key={c.label}
-                      className="flex flex-col items-center gap-2 text-xs text-gray-500"
-                    >
-                      <div
-                        className="w-10 rounded-lg bg-gradient-to-t from-primary-200 to-primary-500"
-                        style={{ height: `${height}%` }}
-                        title={`${c.label} • ${c.value}만 원`}
-                      />
-                      <span>{c.label}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-sm ring-1 ring-gray-100 p-6">
-              <h3 className="font-semibold mb-3">최근 거래 요약</h3>
-              <div className="space-y-3">
-                {recentDeals.map((deal) => (
-                  <div
-                    key={deal.title}
-                    className="flex items-center justify-between text-sm text-gray-700"
-                  >
-                    <span className="truncate mr-2">{deal.title}</span>
-                    <div className="flex items-center gap-3">
-                      <span className="font-semibold text-primary-600">
-                        ₩{deal.price.toLocaleString()}
-                      </span>
-                      <span className="text-xs text-gray-500">{deal.diff}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-sm ring-1 ring-gray-100 p-6">
-              <h3 className="font-semibold mb-3">예측 분포</h3>
-              <div className="h-48 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500">
-                예측 분포(곧 추가)
-              </div>
+          <div className="bg-white rounded-2xl shadow-sm ring-1 ring-gray-100 p-6">
+            <h3 className="font-semibold mb-3">예측 분포</h3>
+            <div className="h-48 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500">
+              예측 분포(곧 추가)
             </div>
           </div>
         </div>
