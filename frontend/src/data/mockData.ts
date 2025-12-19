@@ -52,20 +52,11 @@ export const users = {
   },
 };
 
-// 안전한 이미지 자동 매핑: 상품명/카테고리 기반 Unsplash Source 사용
-const imageFromTitle = (id: number, name: string, category: string) => {
-  const categoryMap: Record<string, string> = {
-    lego: "lego set toy",
-    doll: "doll toy",
-    gundam: "gundam model kit",
-    figure: "anime figure toy",
-    car: "toy bus car",
-  };
-  const query = `${name} ${categoryMap[category] ?? category}`.trim();
-  // size fixed for layout consistency; sig=id gives stable selection per item
-  return `https://source.unsplash.com/400x400/?${encodeURIComponent(
-    query
-  )}&sig=${id}`;
+// 안전한 이미지 자동 매핑: 네트워크 차단 없는 placehold.co 사용 (텍스트=상품명)
+const imageFromTitle = (id: number, name: string) => {
+  const text = encodeURIComponent(name);
+  // 고정 크기와 아이템별 고유 seed로 일관된 프레이밍 유지
+  return `https://placehold.co/400x400?text=${text}&font=montserrat&weight=700&width=400&height=400&bg=F3F5F7&tc=1F2937&seed=${id}`;
 };
 
 // 상품 데이터
@@ -76,7 +67,7 @@ export const items = [
     price: 45000,
     condition: "양호",
     category: "lego",
-    image: imageFromTitle(1, "레고 크리에이터 세트", "lego"),
+    image: imageFromTitle(1, "레고 크리에이터 세트"),
     sellerId: "user1",
     location: "서울 강남구",
     postedAt: "3일 전",
@@ -92,7 +83,7 @@ export const items = [
     price: 25000,
     condition: "최상",
     category: "doll",
-    image: imageFromTitle(2, "바비 인형 세트", "doll"),
+    image: imageFromTitle(2, "바비 인형 세트"),
     sellerId: "user2",
     location: "서울 송파구",
     postedAt: "1일 전",
@@ -108,7 +99,7 @@ export const items = [
     price: 35000,
     condition: "양호",
     category: "gundam",
-    image: imageFromTitle(3, "건담 프라모델 RX-78", "gundam"),
+    image: imageFromTitle(3, "건담 프라모델 RX-78"),
     sellerId: "user3",
     location: "서울 마포구",
     postedAt: "5일 전",
@@ -124,7 +115,7 @@ export const items = [
     price: 18000,
     condition: "보통",
     category: "car",
-    image: imageFromTitle(4, "타요 버스 장난감", "car"),
+    image: imageFromTitle(4, "타요 버스 장난감"),
     sellerId: "user1",
     location: "서울 강남구",
     postedAt: "2일 전",
@@ -139,7 +130,7 @@ export const items = [
     price: 30000,
     condition: "최상",
     category: "figure",
-    image: imageFromTitle(5, "포켓몬 피규어 세트", "figure"),
+    image: imageFromTitle(5, "포켓몬 피규어 세트"),
     sellerId: "user2",
     location: "서울 송파구",
     postedAt: "4일 전",
@@ -155,7 +146,7 @@ export const items = [
     price: 55000,
     condition: "양호",
     category: "doll",
-    image: imageFromTitle(6, "실바니안 패밀리", "doll"),
+    image: imageFromTitle(6, "실바니안 패밀리"),
     sellerId: "user5",
     location: "서울 노원구",
     postedAt: "1주일 전",
@@ -171,7 +162,7 @@ export const items = [
     price: 65000,
     condition: "최상",
     category: "lego",
-    image: imageFromTitle(7, "레고 테크닉 자동차", "lego"),
+    image: imageFromTitle(7, "레고 테크닉 자동차"),
     sellerId: "user4",
     location: "서울 서초구",
     postedAt: "1주일 전",
@@ -186,7 +177,7 @@ export const items = [
     price: 120000,
     condition: "양호",
     category: "lego",
-    image: imageFromTitle(8, "레고 해리포터 호그와트", "lego"),
+    image: imageFromTitle(8, "레고 해리포터 호그와트"),
     sellerId: "user4",
     location: "서울 서초구",
     postedAt: "2일 전",
@@ -202,7 +193,7 @@ export const items = [
     price: 32000,
     condition: "최상",
     category: "doll",
-    image: imageFromTitle(9, "토이스토리 우디 인형", "doll"),
+    image: imageFromTitle(9, "토이스토리 우디 인형"),
     sellerId: "user5",
     location: "서울 노원구",
     postedAt: "3일 전",
@@ -218,7 +209,7 @@ export const items = [
     price: 28000,
     condition: "양호",
     category: "gundam",
-    image: imageFromTitle(10, "건담 자쿠 프라모델", "gundam"),
+    image: imageFromTitle(10, "건담 자쿠 프라모델"),
     sellerId: "user3",
     location: "서울 마포구",
     postedAt: "6일 전",
