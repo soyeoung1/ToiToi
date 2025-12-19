@@ -12,8 +12,11 @@ export default defineConfig({
         assetFileNames: `assets/[name]-[hash]-${Date.now()}.[ext]`,
         chunkFileNames: `assets/[name]-[hash]-${Date.now()}.js`,
         entryFileNames: `assets/[name]-[hash]-${Date.now()}.js`,
+        manualChunks: undefined,
       },
     },
+    assetsInlineLimit: 0,
+    cssCodeSplit: false,
   },
   server: {
     port: 3000,

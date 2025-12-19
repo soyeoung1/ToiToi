@@ -52,18 +52,18 @@ export const users = {
   },
 };
 
-// 상품 이미지 - 실제 장난감 이미지 URL
+// 상품 이미지 - 안정적인 이미지 URL (imgur 호스팅)
 const productImages: Record<number, string> = {
-  1: "https://m.media-amazon.com/images/I/81dZ-3YF6QL._AC_SL1500_.jpg", // 레고 크리에이터 세트
-  2: "https://m.media-amazon.com/images/I/81nR2qCMbAL._AC_SL1500_.jpg", // 바비 인형 세트
-  3: "https://m.media-amazon.com/images/I/71Sy+h0IITL._AC_SL1181_.jpg", // 건담 프라모델 RX-78
-  4: "https://m.media-amazon.com/images/I/71YfG3dIKpL._AC_SL1500_.jpg", // 타요 버스 장난감
-  5: "https://m.media-amazon.com/images/I/81QKx1CLg0L._AC_SL1500_.jpg", // 포켓몬 피규어 세트
-  6: "https://m.media-amazon.com/images/I/81dJC4vz5nL._AC_SL1500_.jpg", // 실바니안 패밀리
-  7: "https://m.media-amazon.com/images/I/81V+HZlPRAL._AC_SL1500_.jpg", // 레고 테크닉 자동차
-  8: "https://m.media-amazon.com/images/I/91MpJbnUfKL._AC_SL1500_.jpg", // 레고 해리포터 호그와트
-  9: "https://m.media-amazon.com/images/I/71GCqX9RIRL._AC_SL1500_.jpg", // 토이스토리 우디 인형
-  10: "https://m.media-amazon.com/images/I/71aErYk5CRL._AC_SL1024_.jpg", // 건담 자쿠 프라모델
+  1: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=400&fit=crop&q=80", // 레고 크리에이터 세트
+  2: "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=400&h=400&fit=crop&q=80", // 바비 인형 세트
+  3: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=400&fit=crop&q=80", // 건담 프라모델 RX-78
+  4: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&q=80", // 타요 버스 장난감
+  5: "https://images.unsplash.com/photo-1613771404721-1f92d799e49f?w=400&h=400&fit=crop&q=80", // 포켓몬 피규어 세트
+  6: "https://images.unsplash.com/photo-1563396983906-b3795482a59a?w=400&h=400&fit=crop&q=80", // 실바니안 패밀리
+  7: "https://images.unsplash.com/photo-1611604548018-d56bbd85d681?w=400&h=400&fit=crop&q=80", // 레고 테크닉 자동차
+  8: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=400&fit=crop&q=80", // 레고 해리포터 호그와트
+  9: "https://images.unsplash.com/photo-1578763363228-5b1d85e4c1f1?w=400&h=400&fit=crop&q=80", // 토이스토리 우디 인형
+  10: "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=400&h=400&fit=crop&q=80", // 건담 자쿠 프라모델
 };
 
 // 상품 데이터
