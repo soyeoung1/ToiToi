@@ -124,7 +124,7 @@ export default function ItemDetailPage() {
                   <span>찜 {isLiked ? item.likes + 1 : item.likes}</span>
                 </button>
                 <Link
-                  to="/chat"
+                  to={`/chat?itemId=${item.id}`}
                   className="flex items-center justify-center gap-2 px-6 py-4 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition"
                 >
                   <MessageCircle size={20} />
