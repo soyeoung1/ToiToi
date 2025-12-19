@@ -6,6 +6,15 @@ export default defineConfig({
   // Use relative paths for assets so the app works under /ToiToi/ on GitHub Pages
   base: "./",
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      output: {
+        assetFileNames: `assets/[name]-[hash]-${Date.now()}.[ext]`,
+        chunkFileNames: `assets/[name]-[hash]-${Date.now()}.js`,
+        entryFileNames: `assets/[name]-[hash]-${Date.now()}.js`,
+      },
+    },
+  },
   server: {
     port: 3000,
     proxy: {
