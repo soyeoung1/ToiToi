@@ -62,7 +62,7 @@ const productImages: Record<number, string> = {
   6: "https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=400&h=400&fit=crop&q=80&auto=format", // 실바니안 패밀리
   7: "https://images.unsplash.com/photo-1611604548018-d56bbd85d681?w=400&h=400&fit=crop&q=80&auto=format", // 레고 테크닉
   8: "https://images.unsplash.com/photo-1580870069867-74c57ee60d19?w=400&h=400&fit=crop&q=80&auto=format", // 레고 호그와트
-  9: "https://images.unsplash.com/photo-1566454419290-a81fdbcf90c6?w=400&h=400&fit=crop&q=80&auto=format", // 우디 인형
+  9: "https://images.unsplash.com/photo-1587912781766-c8ba0c5ce166?w=400&h=400&fit=crop&q=80&auto=format", // 우디 인형
   10: "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=400&h=400&fit=crop&q=80&auto=format", // 건담 자쿠
 };
 
