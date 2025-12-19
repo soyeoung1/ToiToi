@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import MarketplacePage from "./pages/MarketplacePage";
 import ItemDetailPage from "./pages/ItemDetailPage";
 import RepairPage from "./pages/RepairPage";
+import RepairRequestPage from "./pages/RepairRequestPage";
 import PricePredictionPage from "./pages/PricePredictionPage";
 import ChatPage from "./pages/ChatPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -19,6 +20,7 @@ function App() {
           <Route path="marketplace" element={<MarketplacePage />} />
           <Route path="marketplace/:id" element={<ItemDetailPage />} />
           <Route path="repair" element={<RepairPage />} />
+          <Route path="repair/request" element={<RepairRequestPage />} />
           <Route path="price" element={<PricePredictionPage />} />
           <Route path="chat" element={<ChatPage />} />
           <Route path="profile/:userId" element={<ProfilePage />} />
