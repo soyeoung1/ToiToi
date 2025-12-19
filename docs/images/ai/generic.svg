@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#00c2ff"/>
+      <stop offset="50%" stop-color="#6a00ff"/>
+      <stop offset="100%" stop-color="#1b0036"/>
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#g)"/>
+  <g opacity="0.35" fill="#fff">
+    <circle cx="200" cy="300" r="140"/>
+    <circle cx="600" cy="500" r="220"/>
+    <circle cx="860" cy="220" r="100"/>
+  </g>
+  <text x="50%" y="920" font-size="72" font-family="Segoe UI, Roboto, Arial" fill="#ffffff" text-anchor="middle" opacity="0.9">AI Generated • Abstract</text>
+</svg>
