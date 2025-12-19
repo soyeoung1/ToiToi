@@ -1,3 +1,6 @@
+// 캐시 버스팅을 위한 버전 파라미터
+const cacheVersion = `v=${Date.now()}`;
+
 // 사용자 데이터
 export const users = {
   user1: {
@@ -54,16 +57,16 @@ export const users = {
 
 // 상품 이미지 - toy 검색 결과로 각각 다른 이미지
 const productImages: Record<number, string> = {
-  1: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=400&fit=crop&q=80&auto=format", // 레고 세트
-  2: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=400&h=400&fit=crop&q=80&auto=format", // 바비 인형
-  3: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=400&fit=crop&q=80&auto=format", // 건담 프라모델
-  4: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&q=80&auto=format", // 타요 버스
-  5: "https://images.unsplash.com/photo-1601524909162-ae8725290836?w=400&h=400&fit=crop&q=80&auto=format", // 포켓몬 피규어
-  6: "https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=400&h=400&fit=crop&q=80&auto=format", // 실바니안 패밀리
-  7: "https://images.unsplash.com/photo-1611604548018-d56bbd85d681?w=400&h=400&fit=crop&q=80&auto=format", // 레고 테크닉
-  8: "https://images.unsplash.com/photo-1580870069867-74c57ee60d19?w=400&h=400&fit=crop&q=80&auto=format", // 레고 호그와트
-  9: "https://picsum.photos/seed/woody-toy/400/400", // 우디 인형
-  10: "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=400&h=400&fit=crop&q=80&auto=format", // 건담 자쿠
+  1: `https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=400&fit=crop&q=80&auto=format&${cacheVersion}`, // 레고 세트
+  2: `https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=400&h=400&fit=crop&q=80&auto=format&${cacheVersion}`, // 바비 인형
+  3: `https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=400&fit=crop&q=80&auto=format&${cacheVersion}`, // 건담 프라모델
+  4: `https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&q=80&auto=format&${cacheVersion}`, // 타요 버스
+  5: `https://images.unsplash.com/photo-1601524909162-ae8725290836?w=400&h=400&fit=crop&q=80&auto=format&${cacheVersion}`, // 포켓몬 피규어
+  6: `https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=400&h=400&fit=crop&q=80&auto=format&${cacheVersion}`, // 실바니안 패밀리
+  7: `https://images.unsplash.com/photo-1611604548018-d56bbd85d681?w=400&h=400&fit=crop&q=80&auto=format&${cacheVersion}`, // 레고 테크닉
+  8: `https://images.unsplash.com/photo-1580870069867-74c57ee60d19?w=400&h=400&fit=crop&q=80&auto=format&${cacheVersion}`, // 레고 호그와트
+  9: `https://picsum.photos/seed/woody-toy/400/400?${cacheVersion}`, // 우디 인형
+  10: `https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=400&h=400&fit=crop&q=80&auto=format&${cacheVersion}`, // 건담 자쿠
 };
 
 // 상품 데이터
