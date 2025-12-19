@@ -1,13 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function RepairRequestPage() {
   const navigate = useNavigate();
+  type Photo = { id: number; file: File; preview: string };
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [address, setAddress] = useState("");
   const [estimate, setEstimate] = useState<number | "">("");
   const [submitted, setSubmitted] = useState(false);
+  const [photos, setPhotos] = useState<Photo[]>([]);
+  const [dragOver, setDragOver] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      photos.forEach((p) => URL.revokeObjectURL(p.preview));
+    };
+  }, [photos]);
+
+  const addFiles = (files: FileList | null) => {
+    if (!files || !files.length) return;
+    const list = Array.from(files).filter((f) => f.type.startsWith("image/"));
+    const mapped = list.map((f, idx) => ({
+      id: Date.now() + idx,
+      file: f,
+      preview: URL.createObjectURL(f),
+    }));
+    setPhotos((prev) => [...prev, ...mapped].slice(0, 10)); // 최대 10장 제한
+  };
+
+  const removePhoto = (id: number) => {
+    setPhotos((prev) => {
+      const target = prev.find((p) => p.id === id);
+      if (target) URL.revokeObjectURL(target.preview);
+      return prev.filter((p) => p.id !== id);
+    });
+  };
 
   const isValid =
     title.trim() && body.trim() && address.trim() && estimate !== "";
@@ -21,6 +49,11 @@ export default function RepairRequestPage() {
       body,
       address,
       estimate: Number(estimate),
+      photos: photos.map((p) => ({
+        name: p.file.name,
+        size: p.file.size,
+        type: p.file.type,
+      })),
       createdAt: new Date().toISOString(),
     };
     try {
@@ -65,8 +98,76 @@ export default function RepairRequestPage() {
 
         <form
           onSubmit={handleSubmit}
-          className="max-w-2xl mx-auto bg-white rounded-2xl shadow-sm ring-1 ring-gray-100 p-8 space-y-6"
+          className="max-w-3xl mx-auto bg-white rounded-2xl shadow-sm ring-1 ring-gray-100 p-8 space-y-8"
         >
+          {/* Photos uploader */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              사진 (최대 10장)
+            </label>
+            <div
+              className={`border-2 border-dashed rounded-2xl p-6 sm:p-8 ${
+                dragOver
+                  ? "border-primary-400 bg-primary-50"
+                  : "border-gray-300"
+              }`}
+              onDragOver={(e) => {
+                e.preventDefault();
+                setDragOver(true);
+              }}
+              onDragLeave={() => setDragOver(false)}
+              onDrop={(e) => {
+                e.preventDefault();
+                setDragOver(false);
+                addFiles(e.dataTransfer.files);
+              }}
+            >
+              <div className="flex flex-col items-center justify-center text-center gap-3">
+                <div className="text-4xl">📷</div>
+                <p className="text-gray-600">
+                  이미지를 이곳에 드래그하거나
+                  <label className="mx-1 text-primary-600 font-medium underline cursor-pointer">
+                    클릭하여 업로드
+                    <input
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      className="sr-only"
+                      onChange={(e) => addFiles(e.target.files)}
+                    />
+                  </label>
+                  하세요.
+                </p>
+                <p className="text-xs text-gray-500">
+                  JPG, PNG 등 이미지 파일. 권장 10MB 이하
+                </p>
+              </div>
+            </div>
+
+            {photos.length > 0 && (
+              <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                {photos.map((p) => (
+                  <div
+                    key={p.id}
+                    className="relative group rounded-xl overflow-hidden bg-gray-50 ring-1 ring-gray-200"
+                  >
+                    <img
+                      src={p.preview}
+                      alt="preview"
+                      className="w-full h-32 object-cover"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removePhoto(p.id)}
+                      className="absolute top-2 right-2 px-2.5 py-1.5 text-xs rounded-full bg-black/60 text-white opacity-0 group-hover:opacity-100 transition"
+                    >
+                      제거
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               제목
