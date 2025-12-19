@@ -1,10 +1,12 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Search, User, Menu } from "lucide-react";
 import { useState } from "react";
 import { useAuthStore } from "../../store/authStore";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
   const { user, isAuthenticated } = useAuthStore();
 
   return (
@@ -19,17 +21,40 @@ export default function Header() {
 
           {/* Search Bar */}
           <div className="hidden md:flex flex-1 max-w-xl mx-8">
-            <div className="relative w-full">
+            <form
+              className="relative w-full"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const q = query.trim();
+                navigate(
+                  q ? `/marketplace?q=${encodeURIComponent(q)}` : "/marketplace"
+                );
+              }}
+            >
               <input
                 type="text"
                 placeholder="장난감을 검색해보세요..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    const q = query.trim();
+                    navigate(
+                      q
+                        ? `/marketplace?q=${encodeURIComponent(q)}`
+                        : "/marketplace"
+                    );
+                  }
+                }}
                 className="w-full pl-4 pr-10 py-2 rounded-full bg-gray-100 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:bg-white transition"
               />
-              <Search
-                className="absolute right-3 top-2.5 text-gray-400"
-                size={20}
-              />
-            </div>
+              <button
+                type="submit"
+                className="absolute right-2 top-1.5 p-1.5 rounded-full hover:bg-gray-100"
+              >
+                <Search className="text-gray-500" size={20} />
+              </button>
+            </form>
           </div>
 
           {/* Navigation */}

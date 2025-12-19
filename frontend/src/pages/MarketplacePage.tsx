@@ -1,14 +1,23 @@
-import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { useState, useMemo, useEffect } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { Search, SlidersHorizontal } from "lucide-react";
 import { items } from "../data/mockData";
 
 export default function MarketplacePage() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [category, setCategory] = useState("all");
-  const [priceRange, setPriceRange] = useState([0, 100000]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 100000]);
   const [condition, setCondition] = useState("all");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState<string>(
+    () => searchParams.get("q") || ""
+  );
   const [sortBy, setSortBy] = useState("latest");
+
+  // 헤더에서 들어온 URL 쿼리(q)와 동기화
+  useEffect(() => {
+    const q = searchParams.get("q") || "";
+    setSearchQuery(q);
+  }, [searchParams]);
 
   // 필터링 및 정렬된 아이템
   const filteredItems = useMemo(() => {
@@ -58,7 +67,7 @@ export default function MarketplacePage() {
     }
 
     return result;
-  }, [items, searchQuery, category, priceRange, condition, sortBy]);
+  }, [searchQuery, category, priceRange, condition, sortBy]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -72,7 +81,12 @@ export default function MarketplacePage() {
                 type="text"
                 placeholder="장난감 검색..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  setSearchQuery(v);
+                  if (v) setSearchParams({ q: v });
+                  else setSearchParams({});
+                }}
                 className="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
               <Search
