@@ -36,9 +36,23 @@ export default function PricePredictionPage() {
     },
   ];
 
-  const chartBlocks = ["시세 그래프", "최근 거래 요약", "예측 분포"];
-
   const categories = ["인형", "피규어", "블록", "차량", "기타"];
+
+  const chartData = [
+    { label: "1주 전", value: 32 },
+    { label: "6일", value: 35 },
+    { label: "5일", value: 34 },
+    { label: "4일", value: 38 },
+    { label: "3일", value: 40 },
+    { label: "2일", value: 42 },
+    { label: "오늘", value: 45 },
+  ];
+
+  const recentDeals = [
+    { title: "레고 팔콘 미개봉", price: 185000, diff: "+3.1%" },
+    { title: "건담 뉴건담 중고", price: 41000, diff: "+1.5%" },
+    { title: "바비 하우스 A급", price: 94000, diff: "-0.8%" },
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -93,16 +107,20 @@ export default function PricePredictionPage() {
                       <span className="text-gray-400">예상가</span>
                     </div>
                     <div className="grid gap-2">
-                      <input
-                        type="text"
-                        placeholder="상품명"
-                        className="w-full h-9 px-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
-                      />
-                      <input
-                        type="text"
-                        placeholder="세부 옵션"
-                        className="w-full h-9 px-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
-                      />
+                      <label className="text-xs text-gray-500">세부 옵션</label>
+                      <select
+                        className="w-full h-10 px-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white"
+                        defaultValue=""
+                      >
+                        <option value="" disabled>
+                          색상을 선택하세요
+                        </option>
+                        <option value="red">레드</option>
+                        <option value="blue">블루</option>
+                        <option value="yellow">옐로우</option>
+                        <option value="green">그린</option>
+                        <option value="black">블랙</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -112,16 +130,58 @@ export default function PricePredictionPage() {
 
           {/* Right column: chart-style blocks */}
           <div className="space-y-5">
-            {chartBlocks.map((label) => (
-              <div
-                key={label}
-                className="bg-white rounded-2xl shadow-sm ring-1 ring-gray-100 p-6"
-              >
-                <div className="h-56 md:h-64 bg-gray-100 rounded-xl flex items-center justify-center text-gray-500">
-                  {label}
-                </div>
+            <div className="bg-white rounded-2xl shadow-sm ring-1 ring-gray-100 p-6">
+              <div className="mb-4 flex items-center justify-between">
+                <h3 className="font-semibold">시세 그래프</h3>
+                <span className="text-xs text-gray-500">최근 7일</span>
               </div>
-            ))}
+              <div className="h-64 flex items-end gap-3">
+                {chartData.map((c) => {
+                  const max = Math.max(...chartData.map((d) => d.value));
+                  const height = (c.value / max) * 100;
+                  return (
+                    <div
+                      key={c.label}
+                      className="flex flex-col items-center gap-2 text-xs text-gray-500"
+                    >
+                      <div
+                        className="w-10 rounded-lg bg-gradient-to-t from-primary-200 to-primary-500"
+                        style={{ height: `${height}%` }}
+                        title={`${c.label} • ${c.value}만 원`}
+                      />
+                      <span>{c.label}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl shadow-sm ring-1 ring-gray-100 p-6">
+              <h3 className="font-semibold mb-3">최근 거래 요약</h3>
+              <div className="space-y-3">
+                {recentDeals.map((deal) => (
+                  <div
+                    key={deal.title}
+                    className="flex items-center justify-between text-sm text-gray-700"
+                  >
+                    <span className="truncate mr-2">{deal.title}</span>
+                    <div className="flex items-center gap-3">
+                      <span className="font-semibold text-primary-600">
+                        ₩{deal.price.toLocaleString()}
+                      </span>
+                      <span className="text-xs text-gray-500">{deal.diff}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl shadow-sm ring-1 ring-gray-100 p-6">
+              <h3 className="font-semibold mb-3">예측 분포</h3>
+              <div className="h-48 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500">
+                예측 분포(곧 추가)
+              </div>
+            </div>
           </div>
         </div>
       </div>
