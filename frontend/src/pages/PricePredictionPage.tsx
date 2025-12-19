@@ -1,4 +1,4 @@
-import { TrendingUp, TrendingDown } from "lucide-react";
+import { BadgeDollarSign } from "lucide-react";
 
 export default function PricePredictionPage() {
   const priceData = [
@@ -6,158 +6,122 @@ export default function PricePredictionPage() {
       id: 1,
       name: "레고 스타워즈 밀레니엄 팔콘",
       minPrice: 180000,
-      trend: "up",
-      change: 5.2,
+      category: "블록",
+      condition: "양호",
       image: "🧱",
     },
     {
       id: 2,
       name: "건담 RX-93 뉴건담",
       minPrice: 42000,
-      trend: "up",
-      change: 3.1,
+      category: "피규어",
+      condition: "최상",
       image: "🤖",
     },
     {
       id: 3,
       name: "바비 드림하우스",
       minPrice: 95000,
-      trend: "down",
-      change: -2.5,
+      category: "인형",
+      condition: "최상",
       image: "🏠",
     },
     {
       id: 4,
-      name: "포켓몬 피카츄 피규어",
-      minPrice: 28000,
-      trend: "up",
-      change: 8.7,
-      image: "⚡",
-    },
-    {
-      id: 5,
       name: "타요 버스 세트",
       minPrice: 35000,
-      trend: "stable",
-      change: 0.5,
+      category: "차량",
+      condition: "보통",
       image: "🚌",
     },
-    {
-      id: 6,
-      name: "실바니안 패밀리 하우스",
-      minPrice: 68000,
-      trend: "up",
-      change: 4.2,
-      image: "🏡",
-    },
   ];
+
+  const chartBlocks = ["시세 그래프", "최근 거래 요약", "예측 분포"];
+
+  const categories = ["인형", "피규어", "블록", "차량", "기타"];
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">AI 가격 예측</h1>
-          <p className="text-gray-600">
-            실시간 거래 데이터를 기반으로 한 합리적인 가격을 확인하세요
-          </p>
+        <div className="flex items-center gap-3 mb-6">
+          <BadgeDollarSign className="text-primary-600" size={28} />
+          <h1 className="text-3xl font-bold">AI 가격 예측</h1>
         </div>
 
-        {/* Info Box */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
-          <div className="flex items-start gap-3">
-            <div className="text-2xl">💡</div>
-            <div>
-              <h3 className="font-semibold text-blue-900 mb-2">
-                AI 가격 예측이란?
-              </h3>
-              <p className="text-sm text-blue-800">
-                최근 거래 데이터, 상품 상태, 시장 트렌드 등을 AI가 분석하여 적정
-                가격을 제시합니다. 구매나 판매 시 참고하세요!
-              </p>
-            </div>
+        <div className="flex flex-wrap items-center gap-3 mb-8">
+          <span className="text-sm text-gray-600">카테고리</span>
+          <div className="flex gap-2">
+            {categories.map((c) => (
+              <button
+                key={c}
+                className="px-3 py-1 rounded-full border border-gray-200 bg-white text-sm text-gray-700 hover:border-primary-400 hover:text-primary-600"
+              >
+                {c}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Search Box */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-xl font-bold mb-4">가격 확인하기</h2>
-          <div className="flex gap-4">
-            <input
-              type="text"
-              placeholder="장난감 이름을 입력하세요..."
-              className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
-            />
-            <button className="px-8 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
-              검색
-            </button>
-          </div>
-        </div>
-
-        {/* Trending Prices */}
-        <div>
-          <h2 className="text-2xl font-bold mb-6">실시간 인기 장난감 시세</h2>
-          <div className="grid gap-4">
+        <div className="grid lg:grid-cols-[360px,1fr] gap-6">
+          {/* Left column: cards + inputs */}
+          <div className="space-y-5">
             {priceData.map((item) => (
               <div
                 key={item.id}
-                className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
+                className="bg-white rounded-2xl shadow-sm ring-1 ring-gray-100 overflow-hidden"
               >
-                <div className="flex items-center gap-6">
-                  <div className="text-6xl">{item.image}</div>
-
-                  <div className="flex-1">
-                    <h3 className="font-bold text-lg mb-2">{item.name}</h3>
-                    <div className="flex items-center gap-4">
-                      <div>
-                        <p className="text-sm text-gray-500">AI 예측 가격</p>
-                        <p className="text-2xl font-bold text-primary-600">
-                          ₩{item.minPrice.toLocaleString()}
-                        </p>
-                      </div>
-                      <div
-                        className={`flex items-center gap-1 px-3 py-1 rounded-full text-sm font-semibold ${
-                          item.trend === "up"
-                            ? "bg-red-100 text-red-600"
-                            : item.trend === "down"
-                            ? "bg-blue-100 text-blue-600"
-                            : "bg-gray-100 text-gray-600"
-                        }`}
-                      >
-                        {item.trend === "up" ? (
-                          <TrendingUp size={16} />
-                        ) : item.trend === "down" ? (
-                          <TrendingDown size={16} />
-                        ) : (
-                          <span>→</span>
-                        )}
-                        <span>
-                          {item.change > 0 ? "+" : ""}
-                          {item.change}%
-                        </span>
-                      </div>
-                    </div>
+                <div className="grid grid-cols-[140px,1fr] gap-4 p-4 items-center">
+                  <div className="aspect-[4/5] rounded-xl bg-gray-100 flex items-center justify-center text-4xl">
+                    {item.image}
                   </div>
-
-                  <div className="text-right">
-                    <button className="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors mb-2">
-                      상세 보기
-                    </button>
-                    <p className="text-xs text-gray-500">최근 30일 거래 기준</p>
+                  <div className="space-y-2">
+                    <h3 className="font-semibold leading-tight line-clamp-2">
+                      {item.name}
+                    </h3>
+                    <div className="flex flex-wrap gap-2 text-xs text-gray-500">
+                      <span className="px-2 py-1 rounded-full bg-gray-100">
+                        {item.category}
+                      </span>
+                      <span className="px-2 py-1 rounded-full bg-gray-100">
+                        상태 {item.condition}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <span className="font-semibold text-primary-600">
+                        ₩{item.minPrice.toLocaleString()}
+                      </span>
+                      <span className="text-gray-400">예상가</span>
+                    </div>
+                    <div className="grid gap-2">
+                      <input
+                        type="text"
+                        placeholder="상품명"
+                        className="w-full h-9 px-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      />
+                      <input
+                        type="text"
+                        placeholder="세부 옵션"
+                        className="w-full h-9 px-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
 
-        {/* Chart Section Placeholder */}
-        <div className="mt-8 bg-white rounded-lg shadow-md p-8">
-          <h2 className="text-2xl font-bold mb-4">가격 트렌드 차트</h2>
-          <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
-            <p className="text-gray-500">
-              차트 영역 (Chart.js 또는 Recharts 연동)
-            </p>
+          {/* Right column: chart-style blocks */}
+          <div className="space-y-5">
+            {chartBlocks.map((label) => (
+              <div
+                key={label}
+                className="bg-white rounded-2xl shadow-sm ring-1 ring-gray-100 p-6"
+              >
+                <div className="h-56 md:h-64 bg-gray-100 rounded-xl flex items-center justify-center text-gray-500">
+                  {label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
