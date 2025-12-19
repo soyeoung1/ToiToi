@@ -12,7 +12,7 @@ import SignupPage from "./pages/SignupPage";
 
 function App() {
   return (
-    <Router>
+    <Router basename={import.meta.env.PROD ? "/ToiToi" : "/"}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
