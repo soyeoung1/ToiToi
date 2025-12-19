@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Heart, MessageCircle, Share2, MapPin, Clock } from "lucide-react";
-import { items, getUserById, getItemById } from "../data/mockData";
+import { getUserById, getItemById, items } from "../data/mockData";
 
 export default function ItemDetailPage() {
   const { id } = useParams();
@@ -15,74 +15,15 @@ export default function ItemDetailPage() {
     window.scrollTo(0, 0);
   }, [id]);
 
-  // 샘플 데이터
-  const items = [
-    {
-      id: 1,
-      name: "레고 크리에이터 세트",
-      price: 45000,
-      condition: "양호",
-      category: "lego",
-      image:
-        "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=800&h=800&fit=crop",
-      seller: { name: "장난감마스터", rating: 4.8, sales: 23 },
-      location: "서울 강남구",
-      postedAt: "3일 전",
-      views: 142,
-      likes: 28,
-      description:
-        "레고 크리에이터 세트입니다. 거의 사용하지 않아 상태가 매우 좋습니다. 박스와 설명서 모두 포함되어 있습니다.",
-    },
-    {
-      id: 2,
-      name: "바비 인형 세트",
-      price: 25000,
-      condition: "최상",
-      category: "doll",
-      image:
-        "https://images.unsplash.com/photo-1580130732478-d00d5a6c2c93?w=800&h=800&fit=crop",
-      seller: { name: "토이셀러", rating: 4.9, sales: 45 },
-      location: "서울 송파구",
-      postedAt: "1일 전",
-      views: 89,
-      likes: 15,
-      description: "바비 인형 세트입니다. 옷과 액세서리 포함되어 있습니다.",
-    },
-    {
-      id: 3,
-      name: "건담 프라모델 RX-78",
-      price: 35000,
-      condition: "양호",
-      category: "gundam",
-      image:
-        "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=800&h=800&fit=crop",
-      seller: { name: "건프라매니아", rating: 5.0, sales: 67 },
-      location: "서울 마포구",
-      postedAt: "5일 전",
-      views: 234,
-      likes: 42,
-      description:
-        "건담 RX-78 프라모델입니다. 조립 완료된 상태이며 상태 양호합니다.",
-    },
-    {
-      id: 4,
-      name: "레고 테크닉 자동차",
-      price: 65000,
-      condition: "최상",
-      category: "lego",
-      image:
-        "https://images.unsplash.com/photo-1611604548018-d56bbd85d681?w=800&h=800&fit=crop",
-      seller: { name: "장난감마스터", rating: 4.8, sales: 23 },
-      location: "서울 강남구",
-      postedAt: "1주일 전",
-      views: 178,
-      likes: 35,
-      description: "레고 테크닉 시리즈 자동차 모델입니다. 미개봉 새제품입니다.",
-    },
-  ];
+  const item = getItemById(Number(id));
+  if (!item) {
+    return <div>Item not found</div>;
+  }
 
-  const item = getItemById(Number(id)) || items[0];
   const seller = getUserById(item.sellerId);
+  if (!seller) {
+    return <div>Seller not found</div>;
+  }
 
   const relatedItems = items
     .filter((i) => i.category === item.category && i.id !== item.id)
@@ -91,11 +32,10 @@ export default function ItemDetailPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
-        {/* 메인 컨텐츠 */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          {/* 이미지 섹션 */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden mb-4">
+        <div className="grid md:grid-cols-2 gap-8 mb-8">
+          {/* 이미지 */}
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div className="aspect-square bg-gray-100">
               <img
                 src={item.image}
                 alt={item.name}

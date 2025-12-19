@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Send, Image, Smile, MoreVertical } from "lucide-react";
-import { items, users, getUserById } from "../data/mockData";
+import { items, getUserById } from "../data/mockData";
 
 export default function ChatPage() {
   const [selectedChat, setSelectedChat] = useState(1);
